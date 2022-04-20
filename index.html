@@ -17,44 +17,31 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <div class="container-fluid pl-4">
-        <div class="row">
-            <div class="col-lg-3 bg-white">
-                <h2 class="mt-2">Search for a City:</h2>
-                <div class="input-group">
-                    <div class="form-outline">
-                      <input id="search-input" type="search" id="form1" class="form-control" />
-                      <label class="form-label" for="form1">Search</label>
-                    </div>
-                    <button id="search-button" type="button" class="btn btn-primary">
-                      <i class="fas fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-lg-10 card m-2" id="weather-current"></div>
-                        <div class="card-body">
-                            <h3 id="city" class="align-center"></h3>
-                            <img id="placeholder">
-                            <p id="temperature"></p>
-                            <p id="humidity"></p>
-                            <p id="wind-speed"></p>
-                            <p id="UV-index"></p>
-                        </div>
-                </div>
+    <body class="flex-column min-100-vh">
+        <header class="hero">
+        </header>
+      
+      
+        <main class="flex-row justify-space-between">
+          <div class="col-12 col-md-4">
+      
+            <div class="card">
+              <h3 class="card-header text-uppercase">Search for a City:</h3>
+              <form id="user-form" class="card-body">
+                <label class="form-label" for="username">City</label>
+                <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+                <button type="submit" class="btn">Search</button>
+              </form>
             </div>
-            <div class="row">
-                <div class="col-md-3 forecast bg-primary text-white m-2 rounded"></div>
-                <div class="col-md-3 forecast bg-primary text-white m-2 rounded"></div>
-                <div class="col-md-3 forecast bg-primary text-white m-2 rounded"></div>
-                <div class="col-md-3 forecast bg-primary text-white m-2 rounded"></div>
-                <div class="col-md-3 forecast bg-primary text-white m-2 rounded"></div>
+          </div>
+      
+          <div class="col-12 col-md-8">
+            <h2 class="subtitle">Showing weather for: <span id="repo-search-term"></span></h2>
+            <div id="repos-container" class="list-group">
+      
             </div>
-        </div>
-    </div>
-
+          </div>
+        </main>
 
 
 
