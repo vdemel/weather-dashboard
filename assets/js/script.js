@@ -6,6 +6,8 @@ var citySearchTerm = document.querySelector('#city-search-term');
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
+    console.log(event);
+};
     
     var cityName = cityInputEl.value.trim();
 
@@ -18,20 +20,9 @@ var formSubmitHandler = function (event) {
     } else {
         alert('Please enter a valid city name');
     }
-};
-
-// var buttonClickHandler = function (event) {
-//     var language = event.target.getAttribute('data-language');
-
-//     if (language) {
-//         getCityWeather(language);
-
-//         cityContainerEl.textContent = '';
-//     }
-// };
 
 var getCityWeather = function (cityName) {
-    fetch('http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=8cf87abd13d1d3d6082dce15342621f0').then(function(response) {
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=APIkey') .then(function(response) { 
 
         if (response.ok) {
             console.log(response);
@@ -48,15 +39,30 @@ var getCityWeather = function (cityName) {
     });
 };
 
-var displayWeather = function (cityName, searchTerm) {
+var displayWeather = function (weather, searchTerm) {
 
-    weatherSearchTerm.textContent = searchTerm;
+    console.log(weather);
+    console.log(searchTerm);
+
+    cityContainerEl.textContent = '';
+    citySearchTerm.textContent = searchTerm;
+
+    for (var i = 0; i < 5; i++) {
+        var dailyWeather = weather[i].cityName;
+
+        var dailyWeatherEl = document.createElement("span");
+        dailyWeather.textContent = weather;
+
+        dailyWeatherEl.appendChild(dailyWeather);
+
+
+    }
+        
 
     
     
 };
 
-// add event listener to form
 userFormEl.addEventListener('submit', formSubmitHandler);
 
 
