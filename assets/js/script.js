@@ -1,29 +1,25 @@
 var APIkey = '8cf87abd13d1d3d6082dce15342621f0';
 var userFormEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityName');
-var cityContainerEl = document.querySelector('#cities-container');
+var weatherContainerEl = document.querySelector('#weather-container');
 var citySearchTerm = document.querySelector('#city-search-term');
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
     console.log(event);
 
-    
     var cityName = cityInputEl.value.trim();
 
     if (cityName)  {
         getCityWeather(cityName);
+        cityInputEl.value = '';
+    } else {
+        alert('Please enter a valid city name');
+    }
+};
 
-//         //clear old content
-//         cityContainerEl.textContent = '';
-//         cityInputEl.value = '';
-//     } else {
-//         alert('Please enter a valid city name');
-    };
-}
-
-var getCityWeather = function (weather) {
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Austin&appid=8cf87abd13d1d3d6082dce15342621f0";
+var getCityWeather = function (city) {
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIkey;
     fetch(apiUrl)
      .then(function(response) { 
 
@@ -31,7 +27,7 @@ var getCityWeather = function (weather) {
             console.log(response);
             response.json().then(function (data) {
                 console.log(data);
-                displayWeather(data, weather);
+                displayWeather(data, city);
         });
     } else {
         alert('Error: ' + response.statusText);
@@ -42,23 +38,19 @@ var getCityWeather = function (weather) {
     });
 };
 
-var displayWeather = function (weather, searchTerm) {
+var displayWeather = function (city, searchTerm) {
 
-    console.log(weather);
+    console.log(city);
     console.log(searchTerm);
 
-    cityContainerEl.textContent = '';
-    citySearchTerm.textContent = searchTerm;
+    // weatherContainerEl.textContent = '';
+    // citySearchTerm.textContent = searchTerm;
 
     for (var i = 0; i < 5; i++) {
-        var dailyWeather = weather[i].cityName;
+        
+        var dailyWeather = data[i].city + temp[i].name;
 
-        var dailyWeatherEl = document.createElement("span");
-        dailyWeather.textContent = weather;
-
-        dailyWeatherEl.appendChild(dailyWeather);
-
-
+        var dailyWeatherEl = document.createElement("div");
     }
         
 
