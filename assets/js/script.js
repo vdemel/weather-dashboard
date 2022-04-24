@@ -42,10 +42,13 @@ var getCityWeather = function (city) {
     
 };
 
+
+
 var displayWeather = function (weatherData) {
 
+    const {weather, wind} = data;
+    console.log(weather);
        
-    
     
 };
 
