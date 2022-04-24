@@ -4,6 +4,8 @@ var cityInputEl = document.querySelector('#cityName');
 var weatherContainerEl = document.querySelector('#weather-container');
 var citySearchTerm = document.querySelector('#city-search-term');
 
+
+
 var formSubmitHandler = function (event) {
     event.preventDefault();
     console.log(event);
@@ -27,7 +29,7 @@ var getCityWeather = function (city) {
             console.log(response);
             response.json().then(function (data) {
                 console.log(data);
-                displayWeather(data, city);
+                displayWeather(data);
         });
     } else {
         alert('Error: ' + response.statusText);
@@ -36,24 +38,13 @@ var getCityWeather = function (city) {
     .catch(function (error) {
         alert.apply('Unable to retrieve weather');
     });
+
+    
 };
 
-var displayWeather = function (city, searchTerm) {
+var displayWeather = function (weatherData) {
 
-    console.log(city);
-    console.log(searchTerm);
-
-    // weatherContainerEl.textContent = '';
-    // citySearchTerm.textContent = searchTerm;
-
-    for (var i = 0; i < 5; i++) {
-        
-        var dailyWeather = data[i].city + temp[i].name;
-
-        var dailyWeatherEl = document.createElement("div");
-    }
-        
-
+       
     
     
 };
