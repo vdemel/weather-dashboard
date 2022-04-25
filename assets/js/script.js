@@ -4,7 +4,7 @@ var cityInputEl = document.querySelector('#cityName');
 var weatherContainerEl = document.querySelector('#weather-container');
 var citySearchTerm = document.querySelector('#city-search-term');
 
-
+var data = '';
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
@@ -30,6 +30,11 @@ var getCityWeather = function (city) {
             response.json().then(function (data) {
                 console.log(data);
                 displayWeather(data);
+                const { temp } = data.main;
+                const place = data.name;
+                const { description, icon} = data.weather[0];
+                const { sunrise, sunset } = data.sys;
+                
         });
     } else {
         alert('Error: ' + response.statusText);
@@ -46,10 +51,14 @@ var getCityWeather = function (city) {
 
 var displayWeather = function (weatherData) {
 
+    for (var i = 0; i < data.length; i++) {
     const {weather, wind} = data;
-    console.log(weather);
-       
-    
+    console.log(place);
+    console.log(temp);
+    var humidityEl = document.createElement('span');
+    humidityEl.textContent = weatherData.main.humidity;
+    humidityEl.appendChild.weatherContainerEl;
+    }
 };
 
 userFormEl.addEventListener('submit', formSubmitHandler);
