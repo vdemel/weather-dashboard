@@ -27,32 +27,27 @@ var getCityWeather = function (city) {
      .then(function(response) { 
 
         if (response.ok) {
-            console.log(response);
-            return response.json();
-        }
-        })
+            return response.json()
             .then(function(data) {
-                console.log(data);
-                var weatherArray = data.response.visibility;
-                for(var i = 0; i <weatherArray.length; i++) {
-                    var weatherItem = document.createElement("li");
-                    weatherItem.textContent = weatherArray[i].weather;
-                    weatherItemEl.appendChild(weatherItem);
-                }
-            })
-                
-    // } else {
-    //     alert('Error: ' + response.statusText);
-    
-    
-    // .catch(function(error) {
-    //     alert.apply('Unable to retrieve weather');
-    // };
+            var weatherArray = data.visibility;
+            for (var i = 0; i < weatherArray.length; i++) {
+                var weatherItem = document.createElement("li");
+                weatherItem.textContent = weatherArray[i].visibility;
+                weatherItemEl.appendChild(weatherItem);
+             
+        console.log(data);
+            }
+         });
+     }
+        else {
+            alert('Error: ' + response.statusText);
+     }
+    })    
+    .catch(function(error) {
+        alert.apply('Unable to retrieve weather');
+    });
 
-
-};
-
-
+}
 
 // var displayWeather = function (weatherData) {
 
