@@ -4,6 +4,7 @@ var cityInputEl = document.querySelector('#cityName');
 var weatherContainerEl = document.querySelector('#weather-container');
 var citySearchTerm = document.querySelector('#city-search-term');
 
+var weatherItemEl = document.getElementById("weather-item")
 var data = '';
 
 var formSubmitHandler = function (event) {
@@ -27,41 +28,44 @@ var getCityWeather = function (city) {
 
         if (response.ok) {
             console.log(response);
-            response.json().then(function (data) {
+            return response.json();
+        }
+        })
+            .then(function(data) {
                 console.log(data);
-                displayWeather(data);
-                const { temp } = data.main;
-                const place = data.name;
-                const { description, icon} = data.weather[0];
-                const { sunrise, sunset } = data.sys;
+                var weatherArray = data.response.visibility;
+                for(var i = 0; i <weatherArray.length; i++) {
+                    var weatherItem = document.createElement("li");
+                    weatherItem.textContent = weatherArray[i].weather;
+                    weatherItemEl.appendChild(weatherItem);
+                }
+            })
                 
-        });
-    } else {
-        alert('Error: ' + response.statusText);
-    }
-    })
-    .catch(function (error) {
-        alert.apply('Unable to retrieve weather');
-    });
-
+    // } else {
+    //     alert('Error: ' + response.statusText);
     
+    
+    // .catch(function(error) {
+    //     alert.apply('Unable to retrieve weather');
+    // };
+
+
 };
 
 
 
-var displayWeather = function (weatherData) {
+// var displayWeather = function (weatherData) {
 
-    for (var i = 0; i < data.length; i++) {
-    const {weather, wind} = data;
-    console.log(place);
-    console.log(temp);
-    var humidityEl = document.createElement('span');
-    humidityEl.textContent = weatherData.main.humidity;
-    humidityEl.appendChild.weatherContainerEl;
-    }
-};
+//     for (var i = 0; i < data.length; i++) {
+//     const {weather, wind} = data;
+//     console.log(place);
+//     console.log(temp);
+//     var humidityEl = document.createElement('span');
+//     humidityEl.textContent = weatherData.main.humidity;
+//     humidityEl.appendChild.weatherContainerEl;
+//     }
+// };
 
 userFormEl.addEventListener('submit', formSubmitHandler);
 
-
-
+    
