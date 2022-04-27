@@ -3,9 +3,11 @@ var userFormEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityName');
 var weatherContainerEl = document.querySelector('#weather-container');
 var citySearchTerm = document.querySelector('#city-search-term');
+var visibilityEl = document.getElementById('visibility')
 
 var weatherItemEl = document.getElementById("weather-item")
 var data = '';
+var city = '';
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
@@ -21,33 +23,44 @@ var formSubmitHandler = function (event) {
     }
 };
 
-var getCityWeather = function (city) {
+
+var getCityWeather = (city) => {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIkey;
     fetch(apiUrl)
-     .then(function(response) { 
-
-        if (response.ok) {
-            return response.json()
-            .then(function(data) {
-            var weatherArray = data.visibility;
-            for (var i = 0; i < weatherArray.length; i++) {
-                var weatherItem = document.createElement("li");
-                weatherItem.textContent = weatherArray[i].visibility;
-                weatherItemEl.appendChild(weatherItem);
-             
-        console.log(data);
-            }
-         });
-     }
-        else {
-            alert('Error: ' + response.statusText);
-     }
-    })    
-    .catch(function(error) {
-        alert.apply('Unable to retrieve weather');
-    });
-
+    .then(res => res.json())
+    .then(data => {
+        var visibility = data['visibility'];
+    console.log(data)
+    console.log(visibility)
+    })
 }
+// var getCityWeather = function (city) {
+//     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIkey;
+//     fetch(apiUrl)
+//      .then(function(response) { 
+
+//         if (response.ok) {
+//             return response.json()
+//             .then(function(data) {
+//             var weatherArray = data.visibility;
+//             for (var i = 0; i < weatherArray.length; i++) {
+//                 var weatherItem = document.createElement("li");
+//                 weatherItem.textContent = weatherArray[i].visibility;
+//                 weatherItemEl.appendChild(weatherItem);
+             
+//         console.log(data);
+//             }
+//          });
+//      }
+//         else {
+//             alert('Error: ' + response.statusText);
+//      }
+//     })    
+//     .catch(function(error) {
+//         alert.apply('Unable to retrieve weather');
+//     });
+
+// }
 
 // var displayWeather = function (weatherData) {
 
