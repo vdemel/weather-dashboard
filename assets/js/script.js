@@ -3,7 +3,7 @@ var userFormEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityName');
 var weatherContainerEl = document.querySelector('#weather-container');
 var citySearchTerm = document.querySelector('#city-search-term');
-var visibilityEl = document.getElementById('visibility')
+var humidityEl = document.getElementById('humidity')
 
 var weatherItemEl = document.getElementById("weather-item")
 var data = '';
@@ -29,9 +29,11 @@ var getCityWeather = (city) => {
     fetch(apiUrl)
     .then(res => res.json())
     .then(data => {
-        var visibility = data['visibility'];
+        var humidity = data['main']['humidity'];
+        var temp = data['main']['temp'];
+        var windSpeed = data['wind']['speed'];
     console.log(data)
-    console.log(visibility)
+    console.log(humidity)
     })
 }
 // var getCityWeather = function (city) {
@@ -62,17 +64,13 @@ var getCityWeather = (city) => {
 
 // }
 
-// var displayWeather = function (weatherData) {
+var displayWeather = function(city) {
 
-//     for (var i = 0; i < data.length; i++) {
-//     const {weather, wind} = data;
-//     console.log(place);
-//     console.log(temp);
-//     var humidityEl = document.createElement('span');
-//     humidityEl.textContent = weatherData.main.humidity;
-//     humidityEl.appendChild.weatherContainerEl;
-//     }
-// };
+    humidityEl = document.createElement('span');
+    humidityEl.textContent = innerhtml.humidity;
+    humidityEl.appendChild.weatherContainerEl;
+    
+};
 
 userFormEl.addEventListener('submit', formSubmitHandler);
 
